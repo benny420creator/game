@@ -1,74 +1,57 @@
-// Function to update crypto prices with random fluctuations
-function updateCryptoPrices() {
-    // Generate random fluctuations for Bitcoin and Ethereum prices
-    let bitcoinFluctuation = getRandomChange();
-    let ethereumFluctuation = getRandomChange();
+let walletBalance = 10000;
+let portfolio = {};
+let cryptos = {
+    'Bitcoin': { price: 10000 },
+    'Ethereum': { price: 4000 },
+    'Litecoin': { price: 150 }
+};
 
-    // Update prices with fluctuations
-    bitcoinPrice += bitcoinFluctuation;
-    ethereumPrice += ethereumFluctuation;
-
-    // Display updated prices
-    document.getElementById('bitcoin-price').innerText = `$${bitcoinPrice.toFixed(2)}`;
-    document.getElementById('ethereum-price').innerText = `$${ethereumPrice.toFixed(2)}`;
-}
-
-// Function to get random change
-function getRandomChange() {
-    return (Math.random() - 0.5) * 20; // Change between -10 and 10
-}
-
-// Buy function
-document.getElementById('buy-btn').addEventListener('click', function() {
-    let cryptoSelect = document.getElementById('crypto-select').value;
-    let tradeAmount = parseInt(document.getElementById('trade-amount').value);
-
-    if (cryptoSelect === 'bitcoin') {
-        // Deduct cash and add bitcoin holdings
-        cashBalance -= bitcoinPrice * tradeAmount;
-        bitcoinHoldings += tradeAmount;
-    } else if (cryptoSelect === 'ethereum') {
-        // Deduct cash and add ethereum holdings
-        cashBalance -= ethereumPrice * tradeAmount;
-        ethereumHoldings += tradeAmount;
+function updatePrices() {
+    for (let crypto in cryptos) {
+        let change = Math.floor(Math.random() * 1000) - 500;
+        cryptos[crypto].price = Math.max(100, cryptos[crypto].price + change);
     }
-    updatePortfolio(cashBalance, bitcoinHoldings, ethereumHoldings);
-});
-
-// Sell function
-document.getElementById('sell-btn').addEventListener('click', function() {
-    let cryptoSelect = document.getElementById('crypto-select').value;
-    let tradeAmount = parseInt(document.getElementById('trade-amount').value);
-
-    if (cryptoSelect === 'bitcoin' && bitcoinHoldings >= tradeAmount) {
-        // Add cash and deduct bitcoin holdings
-        cashBalance += bitcoinPrice * tradeAmount;
-        bitcoinHoldings -= tradeAmount;
-    } else if (cryptoSelect === 'ethereum' && ethereumHoldings >= tradeAmount) {
-        // Add cash and deduct ethereum holdings
-        cashBalance += ethereumPrice * tradeAmount;
-        ethereumHoldings -= tradeAmount;
-    }
-    updatePortfolio(cashBalance, bitcoinHoldings, ethereumHoldings);
-});
-
-// Function to update portfolio
-function updatePortfolio(cashBalance, bitcoinHoldings, ethereumHoldings) {
-    document.getElementById('cash-balance').innerText = `$${cashBalance}`;
-    document.getElementById('bitcoin-holdings').innerText = bitcoinHoldings;
-    document.getElementById('ethereum-holdings').innerText = ethereumHoldings;
-    // Add more portfolio updates here if needed
+    displayCryptos();
 }
 
-// Initial portfolio setup
-let cashBalance = 10000;
-let bitcoinHoldings = 0;
-let ethereumHoldings = 0;
-updatePortfolio(cashBalance, bitcoinHoldings, ethereumHoldings);
+function displayCryptos() {
+    const cryptoList = document.getElementById('cryptos');
+    cryptoList.innerHTML = '';
+    for (let crypto in cryptos) {
+        let li = document.createElement('li');
+        li.innerHTML = `${crypto}: $${cryptos[crypto].price} <button onclick="buyCrypto('${crypto}', 1)">Buy</button>`;
+        cryptoList.appendChild(li);
+    }
+}
 
-// Initial crypto prices
-let bitcoinPrice = 50000;
-let ethereumPrice = 3000;
+function updatePortfolioDisplay() {
+    const portfolioList = document.getElementById('portfolioList');
+    portfolioList.innerHTML = '';
+    for (let crypto in portfolio) {
+        let li = document.createElement('li');
+        li.textContent = `${crypto}: ${portfolio[crypto]} units`;
+        portfolioList.appendChild(li);
+    }
+}
 
-// Update prices every second
-setInterval(updateCryptoPrices, 1000);
+function buyCrypto(cryptoName, units) {
+    let cost = cryptos[cryptoName].price * units;
+    if (walletBalance >= cost) {
+        walletBalance -= cost;
+        portfolio[cryptoName] = (portfolio[cryptoName] || 0) + units;
+        updateWallet();
+        updatePortfolioDisplay();
+    } else {
+        alert("Not enough funds to buy.");
+    }
+}
+
+function updateWallet() {
+    document.getElementById("walletBalance").textContent = '$' + walletBalance.toFixed(2);
+}
+
+// Initialize the app
+updateWallet();
+displayCryptos();
+updatePortfolioDisplay();
+setInterval(updatePrices, 10000); // Update prices every 10 seconds

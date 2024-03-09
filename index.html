@@ -3,42 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Stock Market Game</title>
+    <title>Crypto Trading Platform</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="rounded-container">
-            <h1>Crypto Stock Market Game</h1>
-            <div class="game-container">
-                <div class="crypto-info">
-                    <h2>Crypto Information</h2>
-                    <p>Bitcoin Price: <span id="bitcoin-price">$0</span></p>
-                    <p>Ethereum Price: <span id="ethereum-price">$0</span></p>
-                    <!-- Add more crypto information here -->
-                </div>
-                <div class="portfolio">
-                    <h2>Your Portfolio</h2>
-                    <p>Cash Balance: <span id="cash-balance">$10000</span></p>
-                    <p>Bitcoin Holdings: <span id="bitcoin-holdings">0</span></p>
-                    <p>Ethereum Holdings: <span id="ethereum-holdings">0</span></p>
-                    <!-- Add more portfolio information here -->
-                </div>
-                <div class="trade-form">
-                    <h2>Trade</h2>
-                    <label for="crypto-select">Select Crypto:</label>
-                    <select name="crypto-select" id="crypto-select">
-                        <option value="bitcoin">Bitcoin</option>
-                        <option value="ethereum">Ethereum</option>
-                        <!-- Add more crypto options here -->
-                    </select>
-                    <label for="trade-amount">Trade Amount:</label>
-                    <input type="number" id="trade-amount" min="1" value="1">
-                    <button id="buy-btn">Buy</button>
-                    <button id="sell-btn">Sell</button>
-                </div>
-            </div>
-        </div>
+    <h1>Crypto Trading Platform</h1>
+    <div id="wallet">
+        <p>Your Wallet: <span id="walletBalance">$10000</span></p>
+    </div>
+    <div id="cryptoList">
+        <h2>Available Cryptocurrencies</h2>
+        <ul id="cryptos">
+            <!-- Cryptocurrencies will be listed here -->
+        </ul>
+    </div>
+    <div id="portfolio">
+        <h2>Your Portfolio</h2>
+        <ul id="portfolioList">
+            <!-- Portfolio details will be listed here -->
+        </ul>
     </div>
     <script src="script.js"></script>
 </body>

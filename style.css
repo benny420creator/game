@@ -1,65 +1,28 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #1e1e1e;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.rounded-container {
-    background-color: #333;
-    border-radius: 10px;
-    padding: 20px;
-    width: 80%;
-}
-
-h1, h2 {
+    background-color: #f0f0f0;
     text-align: center;
 }
 
-.game-container {
-    display: flex;
-    justify-content: space-between;
+#cryptoList, #portfolio {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: inline-block;
+    width: 45%;
 }
 
-.crypto-info, .portfolio, .trade-form {
-    flex-basis: 30%;
-}
-
-.crypto-info, .portfolio {
-    border: 1px solid #555;
+#cryptos li, #portfolioList li {
+    list-style-type: none;
     padding: 10px;
+    border-bottom: 1px solid #eee;
 }
 
-.trade-form {
-    border: 1px solid #555;
-    padding: 10px;
+#cryptos li:last-child, #portfolioList li:last-child {
+    border-bottom: none;
 }
 
-.trade-form input[type="number"] {
-    width: 100px;
-    margin-right: 10px;
-}
-
-.trade-form button {
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: #333;
-    color: #fff;
-    border: none;
-}
-
-.trade-form button:hover {
-    background-color: #555;
+h2 {
+    color: #333;
 }
