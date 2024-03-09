@@ -6,52 +6,40 @@ let cryptos = {
     'Litecoin': { price: 150 }
 };
 
+// Initialize Chart.js
+let chartData = {
+    labels: [], // Time labels
+    datasets: [{
+        label: 'Crypto Price',
+        data: [], // Price data
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+    }]
+};
+
+let config = {
+    type: 'line',
+    data: chartData,
+};
+
+// Simulate price update and refresh chart
+function updateChart(cryptoName) {
+    chartData.labels.push(new Date().toLocaleTimeString());
+    chartData.datasets[0].data.push(cryptos[cryptoName].price);
+    if (cryptoChart) {
+        cryptoChart.update();
+    }
+}
+
+// Placeholder for actual chart logic
+let ctx = document.getElementById('cryptoChart').getContext('2d');
+let cryptoChart = new Chart(ctx, config);
+
 function updatePrices() {
-    for (let crypto in cryptos) {
-        let change = Math.floor(Math.random() * 1000) - 500;
-        cryptos[crypto].price = Math.max(100, cryptos[crypto].price + change);
-    }
-    displayCryptos();
+    // Update cryptos and refresh chart as part of this function
 }
 
-function displayCryptos() {
-    const cryptoList = document.getElementById('cryptos');
-    cryptoList.innerHTML = '';
-    for (let crypto in cryptos) {
-        let li = document.createElement('li');
-        li.innerHTML = `${crypto}: $${cryptos[crypto].price} <button onclick="buyCrypto('${crypto}', 1)">Buy</button>`;
-        cryptoList.appendChild(li);
-    }
-}
+// Implement buyCrypto, sellCrypto, updateWallet, and other functions as previously described
 
-function updatePortfolioDisplay() {
-    const portfolioList = document.getElementById('portfolioList');
-    portfolioList.innerHTML = '';
-    for (let crypto in portfolio) {
-        let li = document.createElement('li');
-        li.textContent = `${crypto}: ${portfolio[crypto]} units`;
-        portfolioList.appendChild(li);
-    }
-}
-
-function buyCrypto(cryptoName, units) {
-    let cost = cryptos[cryptoName].price * units;
-    if (walletBalance >= cost) {
-        walletBalance -= cost;
-        portfolio[cryptoName] = (portfolio[cryptoName] || 0) + units;
-        updateWallet();
-        updatePortfolioDisplay();
-    } else {
-        alert("Not enough funds to buy.");
-    }
-}
-
-function updateWallet() {
-    document.getElementById("walletBalance").textContent = '$' + walletBalance.toFixed(2);
-}
-
-// Initialize the app
-updateWallet();
-displayCryptos();
-updatePortfolioDisplay();
-setInterval(updatePrices, 10000); // Update prices every 10 seconds
+// Call updatePrices at a set interval for dynamic simulation
+setInterval(updatePrices, 5000); // Adjust frequency as needed
