@@ -11,6 +11,16 @@ body {
 }
 
 .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.rounded-container {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
     width: 80%;
 }
 
@@ -28,12 +38,12 @@ h1, h2 {
 }
 
 .crypto-info, .portfolio {
-    border: 1px solid #333;
+    border: 1px solid #555;
     padding: 10px;
 }
 
 .trade-form {
-    border: 1px solid #333;
+    border: 1px solid #555;
     padding: 10px;
 }
 
