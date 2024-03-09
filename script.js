@@ -1,12 +1,15 @@
-// Mock crypto prices
-let bitcoinPrice = 50000;
-let ethereumPrice = 3000;
-
 // Function to update crypto prices
 function updateCryptoPrices() {
-    document.getElementById('bitcoin-price').innerText = `$${bitcoinPrice}`;
-    document.getElementById('ethereum-price').innerText = `$${ethereumPrice}`;
-    // Add more crypto price updates here if needed
+    bitcoinPrice += getRandomChange();
+    ethereumPrice += getRandomChange();
+
+    document.getElementById('bitcoin-price').innerText = `$${bitcoinPrice.toFixed(2)}`;
+    document.getElementById('ethereum-price').innerText = `$${ethereumPrice.toFixed(2)}`;
+}
+
+// Function to get random change
+function getRandomChange() {
+    return (Math.random() - 0.5) * 10; // Change between -5 and 5
 }
 
 // Function to update portfolio
@@ -57,5 +60,10 @@ let bitcoinHoldings = 0;
 let ethereumHoldings = 0;
 updatePortfolio(cashBalance, bitcoinHoldings, ethereumHoldings);
 
-// Initial crypto prices update
+// Initial crypto prices
+let bitcoinPrice = 50000;
+let ethereumPrice = 3000;
 updateCryptoPrices();
+
+// Update prices every second
+setInterval(updateCryptoPrices, 1000);
