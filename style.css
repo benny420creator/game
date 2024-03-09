@@ -2,69 +2,54 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #1e1e1e;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
-    max-width: 800px;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
 }
 
-.chart-container {
-    margin: 20px auto;
-    width: 100%;
-    height: 300px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-}
-
-.chart {
-    width: 100%;
-    height: 100%;
-}
-
-.stats {
+.game-container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
 }
 
-.trade {
-    text-align: center;
+.crypto-info, .portfolio, .trade-form {
+    flex-basis: 30%;
 }
 
-.input-container {
-    margin-bottom: 10px;
+.crypto-info, .portfolio {
+    border: 1px solid #333;
+    padding: 10px;
 }
 
-input[type="number"] {
-    padding: 8px;
+.trade-form {
+    border: 1px solid #333;
+    padding: 10px;
+}
+
+.trade-form input[type="number"] {
     width: 100px;
     margin-right: 10px;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
+.trade-form button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #333;
     color: #fff;
     border: none;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
-
-.message {
-    margin-top: 20px;
-    font-weight: bold;
+.trade-form button:hover {
+    background-color: #555;
 }

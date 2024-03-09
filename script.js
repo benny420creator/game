@@ -1,57 +1,61 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const balanceDisplay = document.getElementById("balanceAmount");
-    const portfolioDisplay = document.getElementById("portfolioValue");
-    const priceDisplay = document.getElementById("currentPrice");
-    const quantityInput = document.getElementById("quantity");
-    const buyButton = document.getElementById("buyButton");
-    const sellButton = document.getElementById("sellButton");
-    const messageDisplay = document.getElementById("message");
+// Mock crypto prices
+let bitcoinPrice = 50000;
+let ethereumPrice = 3000;
 
-    let balance = 10000;
-    let portfolioValue = 0;
-    let currentPrice = 0;
+// Function to update crypto prices
+function updateCryptoPrices() {
+    document.getElementById('bitcoin-price').innerText = `$${bitcoinPrice}`;
+    document.getElementById('ethereum-price').innerText = `$${ethereumPrice}`;
+    // Add more crypto price updates here if needed
+}
 
-    // Simulated price update
-    function updatePrice() {
-        currentPrice = (Math.random() * 1000).toFixed(2);
-        priceDisplay.textContent = currentPrice;
+// Function to update portfolio
+function updatePortfolio(cashBalance, bitcoinHoldings, ethereumHoldings) {
+    document.getElementById('cash-balance').innerText = `$${cashBalance}`;
+    document.getElementById('bitcoin-holdings').innerText = bitcoinHoldings;
+    document.getElementById('ethereum-holdings').innerText = ethereumHoldings;
+    // Add more portfolio updates here if needed
+}
+
+// Buy function
+document.getElementById('buy-btn').addEventListener('click', function() {
+    let cryptoSelect = document.getElementById('crypto-select').value;
+    let tradeAmount = parseInt(document.getElementById('trade-amount').value);
+
+    if (cryptoSelect === 'bitcoin') {
+        // Deduct cash and add bitcoin holdings
+        cashBalance -= bitcoinPrice * tradeAmount;
+        bitcoinHoldings += tradeAmount;
+    } else if (cryptoSelect === 'ethereum') {
+        // Deduct cash and add ethereum holdings
+        cashBalance -= ethereumPrice * tradeAmount;
+        ethereumHoldings += tradeAmount;
     }
-    updatePrice();
-    setInterval(updatePrice, 5000);
-
-    // Buy action
-    buyButton.addEventListener("click", function() {
-        const quantity = parseInt(quantityInput.value);
-        const totalCost = quantity * currentPrice;
-        if (balance >= totalCost && quantity > 0) {
-            balance -= totalCost;
-            portfolioValue += totalCost;
-            balanceDisplay.textContent = balance.toFixed(2);
-            portfolioDisplay.textContent = portfolioValue.toFixed(2);
-            messageDisplay.textContent = `Bought ${quantity} units at $${currentPrice.toFixed(2)} each`;
-            messageDisplay.style.color = "green";
-        } else {
-            messageDisplay.textContent = "Invalid transaction";
-            messageDisplay.style.color = "red";
-        }
-        quantityInput.value = "";
-    });
-
-    // Sell action
-    sellButton.addEventListener("click", function() {
-        const quantity = parseInt(quantityInput.value);
-        const totalSale = quantity * currentPrice;
-        if (quantity <= portfolioValue && quantity > 0) {
-            balance += totalSale;
-            portfolioValue -= totalSale;
-            balanceDisplay.textContent = balance.toFixed(2);
-            portfolioDisplay.textContent = portfolioValue.toFixed(2);
-            messageDisplay.textContent = `Sold ${quantity} units at $${currentPrice.toFixed(2)} each`;
-            messageDisplay.style.color = "green";
-        } else {
-            messageDisplay.textContent = "Invalid transaction";
-            messageDisplay.style.color = "red";
-        }
-        quantityInput.value = "";
-    });
+    updatePortfolio(cashBalance, bitcoinHoldings, ethereumHoldings);
 });
+
+// Sell function
+document.getElementById('sell-btn').addEventListener('click', function() {
+    let cryptoSelect = document.getElementById('crypto-select').value;
+    let tradeAmount = parseInt(document.getElementById('trade-amount').value);
+
+    if (cryptoSelect === 'bitcoin' && bitcoinHoldings >= tradeAmount) {
+        // Add cash and deduct bitcoin holdings
+        cashBalance += bitcoinPrice * tradeAmount;
+        bitcoinHoldings -= tradeAmount;
+    } else if (cryptoSelect === 'ethereum' && ethereumHoldings >= tradeAmount) {
+        // Add cash and deduct ethereum holdings
+        cashBalance += ethereumPrice * tradeAmount;
+        ethereumHoldings -= tradeAmount;
+    }
+    updatePortfolio(cashBalance, bitcoinHoldings, ethereumHoldings);
+});
+
+// Initial portfolio setup
+let cashBalance = 10000;
+let bitcoinHoldings = 0;
+let ethereumHoldings = 0;
+updatePortfolio(cashBalance, bitcoinHoldings, ethereumHoldings);
+
+// Initial crypto prices update
+updateCryptoPrices();

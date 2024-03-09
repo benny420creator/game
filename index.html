@@ -9,20 +9,33 @@
 <body>
     <div class="container">
         <h1>Crypto Stock Market Game</h1>
-        <div class="chart-container">
-            <div class="chart"></div>
-        </div>
-        <div class="stats">
-            <div class="balance">Balance: $<span id="balanceAmount">10000.00</span></div>
-            <div class="pnl">PnL: <span id="pnlPercent">0%</span></div>
-        </div>
-        <div class="trade">
-            <div class="input-container">
-                <input type="number" id="quantity" placeholder="Quantity">
-                <button id="buyButton">Buy</button>
-                <button id="sellButton">Sell</button>
+        <div class="game-container">
+            <div class="crypto-info">
+                <h2>Crypto Information</h2>
+                <p>Bitcoin Price: <span id="bitcoin-price">$0</span></p>
+                <p>Ethereum Price: <span id="ethereum-price">$0</span></p>
+                <!-- Add more crypto information here -->
             </div>
-            <div id="message" class="message"></div>
+            <div class="portfolio">
+                <h2>Your Portfolio</h2>
+                <p>Cash Balance: <span id="cash-balance">$10000</span></p>
+                <p>Bitcoin Holdings: <span id="bitcoin-holdings">0</span></p>
+                <p>Ethereum Holdings: <span id="ethereum-holdings">0</span></p>
+                <!-- Add more portfolio information here -->
+            </div>
+            <div class="trade-form">
+                <h2>Trade</h2>
+                <label for="crypto-select">Select Crypto:</label>
+                <select name="crypto-select" id="crypto-select">
+                    <option value="bitcoin">Bitcoin</option>
+                    <option value="ethereum">Ethereum</option>
+                    <!-- Add more crypto options here -->
+                </select>
+                <label for="trade-amount">Trade Amount:</label>
+                <input type="number" id="trade-amount" min="1" value="1">
+                <button id="buy-btn">Buy</button>
+                <button id="sell-btn">Sell</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
