@@ -9,13 +9,21 @@
 <body>
     <div class="container">
         <h1>Crypto Stock Market Game</h1>
-        <div id="balance">Balance: $<span id="balanceAmount">10000.00</span></div>
-        <div id="portfolio">Portfolio Value: $<span id="portfolioValue">0.00</span></div>
-        <div id="price">Current Price: $<span id="currentPrice">0.00</span></div>
-        <input type="number" id="quantity" placeholder="Quantity">
-        <button id="buyButton">Buy</button>
-        <button id="sellButton">Sell</button>
-        <div id="message"></div>
+        <div class="chart-container">
+            <div class="chart"></div>
+        </div>
+        <div class="stats">
+            <div class="balance">Balance: $<span id="balanceAmount">10000.00</span></div>
+            <div class="pnl">PnL: <span id="pnlPercent">0%</span></div>
+        </div>
+        <div class="trade">
+            <div class="input-container">
+                <input type="number" id="quantity" placeholder="Quantity">
+                <button id="buyButton">Buy</button>
+                <button id="sellButton">Sell</button>
+            </div>
+            <div id="message" class="message"></div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
@@ -18,19 +18,36 @@ h1 {
     text-align: center;
 }
 
-#balance, #portfolio, #price {
-    margin-bottom: 10px;
+.chart-container {
+    margin: 20px auto;
+    width: 100%;
+    height: 300px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
 }
 
-#message {
-    margin-top: 20px;
+.chart {
+    width: 100%;
+    height: 100%;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.trade {
     text-align: center;
-    font-weight: bold;
+}
+
+.input-container {
+    margin-bottom: 10px;
 }
 
 input[type="number"] {
     padding: 8px;
-    width: 150px;
+    width: 100px;
     margin-right: 10px;
 }
 
@@ -45,4 +62,9 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+.message {
+    margin-top: 20px;
+    font-weight: bold;
 }
