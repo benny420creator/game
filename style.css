@@ -1,64 +1,60 @@
-/* General Reset */
-* {
+/* General styles */
+body, html {
+    height: 100%;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
     background-color: #121212;
-    color: #e0e0e0;
-    padding: 20px;
-    line-height: 1.6;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-h1 {
-    margin-bottom: 20px;
+.container {
     text-align: center;
-    color: #76ff03;
+    width: 80%;
+    max-width: 960px;
 }
 
-#wallet, #actions, #priceChart {
-    background-color: #333;
-    margin-top: 20px;
+#ticker {
+    background-color: #333333;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+#wallet, #actions, #chartContainer {
+    background-color: #333333;
+    margin: 10px 0;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 5px;
 }
 
 button {
-    background-color: #2962ff;
-    color: #fff;
+    background-color: #007bff;
     border: none;
     padding: 10px 20px;
-    margin: 0 10px 10px 0;
+    margin: 10px;
     border-radius: 5px;
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0039cb;
+    opacity: 0.8;
 }
 
-#priceChart {
-    max-width: 600px;
-    margin: 20px auto;
+input[type="number"] {
+    padding: 10px;
+    width: 80px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #333;
+    color: white;
 }
 
 canvas {
-    background-color: #424242;
+    background-color: #222;
     border-radius: 5px;
-}
-
-p {
-    margin: 10px 0;
-}
-
-/* Responsive tweaks */
-@media (max-width: 768px) {
-    #actions button {
-        width: 100%;
-        margin: 10px 0;
-    }
 }

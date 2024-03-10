@@ -2,26 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta viewport="width=device-width, initial-scale=1.0">
-    <title>Crypto Trading and Borrowing Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Trading Platform</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Crypto Trading and Borrowing Platform</h1>
-    <div id="wallet">
-        <p>Your Wallet: $<span id="walletBalance">10000</span></p>
-        <p>Your CC: <span id="cryptoBalance">0</span> CC</p>
-        <p>Borrowed: $<span id="borrowedAmount">0</span> (Interest: <span id="interestRate">5%</span>)</p>
-    </div>
-    <div id="actions">
-        <button onclick="buyCrypto()">Buy CC</button>
-        <button onclick="sellCrypto()">Sell CC</button>
-        <button onclick="borrowMoney()">Borrow Money</button>
-        <button onclick="repayLoan()">Repay Loan</button>
-    </div>
-    <div id="priceChart">
-        <canvas id="cryptoChart"></canvas>
+    <div class="container">
+        <h1>Crypto Trading Platform</h1>
+        <div id="ticker">
+            <h2>CryptoCoin (CC) Price: $<span id="cryptoPrice">500</span></h2>
+        </div>
+        <div id="wallet">
+            <p>Your Wallet: $<span id="walletBalance">10000</span></p>
+            <p>Your CC: <span id="cryptoBalance">0</span> CC</p>
+            <p>Borrowed: $<span id="borrowedAmount">0</span></p>
+        </div>
+        <div id="actions">
+            <input type="number" id="amount" value="1" min="1" />
+            <button onclick="buyCrypto()">Buy CC</button>
+            <button onclick="sellCrypto()">Sell CC</button>
+            <button onclick="borrowMoney()">Borrow Money</button>
+            <button onclick="repayLoan()">Repay Loan</button>
+        </div>
+        <div id="chartContainer">
+            <canvas id="cryptoChart"></canvas>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
